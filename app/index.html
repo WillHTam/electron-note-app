@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wombat Note</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Don't really have to worry about compatibility with CSS variables because essentially loading our own version of Chrome customized with this project -->
+    <link href="./style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <table id="statistics">
+        <tbody>
+          <tr>
+            <th class="text-statistic-label">Lines</th>
+            <td class="text-statistic" id="line-count">0</td>
+            <th class="text-statistic-label">Words</th>
+            <td class="text-statistic" id="word-count">0</td>
+            <th class="text-statistic-label">Reading Time</th>
+            <td class="text-statistic" id="reading-time">0 min read</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <textarea id="content"></textarea>
+
+      <section id="controls">
+        <button id="open-file" class="control-button">
+          Open
+        </button>
+        <button id="save-file" class="control-button">
+          Save
+        </button>
+        <button id="copy-to-clipboard" class="control-button">
+          Copy to Clipboard
+        </button>
+      <section>
+    </div>
+
+    <!--
+      We use Node's require to load renderer.js
+      Main.js deals directly with the operating system
+      Renderer.js deals with the DOM and user interface.
+    -->
+    <script>
+      require('./renderer.js');
+    </script>
+  </body>
+</html>

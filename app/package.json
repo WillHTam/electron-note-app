@@ -1,0 +1,17 @@
+{
+  "name": "wombatnote",
+  "version": "1.0.0",
+  "description": "Note Program made with Electron",
+  "main": "./app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William Tam <william.tam18@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "count-lines": "^0.1.2",
+    "electron": "^1.6.6",
+    "reading-time": "^1.1.0"
+  }
+}

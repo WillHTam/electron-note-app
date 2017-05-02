@@ -1,0 +1,91 @@
+:root {
+  --toolbar-bg: #1d2740;
+  --entry-background: #292e36;
+  --toolbar-text: #4469b0;
+  --button-highlight: #D6EAFF;
+  --button-pressed: #7292B2;
+}
+
+html, body, * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, input, textarea, button {
+  font: menu;
+  outline: none;
+  border: none;
+}
+
+body {
+  background-color: var(--toolbar-bg);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+#content {
+  flex: 1 1 auto;
+  padding: 1em;
+  color: #9299b3;
+  background-color: var(--entry-background);
+  resize: none;
+  height: calc(100vh - 5em);
+}
+
+#statistics, #controls {
+  flex: 0 0 auto;
+  align-self: auto;
+  display: flex;
+  justify-content: space-around;
+  align-content: align-content;
+  align-items: center;
+  color: var(--toolbar-text);
+}
+
+#statistics {
+  height: 2em;
+}
+
+.text-statistic-label:not(:first-child) {
+  padding-left: 10vw;
+}
+
+.text-statistic {
+  padding-left: 0.5em;
+}
+
+#controls {
+  padding: 1em;
+  height: 3em;
+}
+
+.control-button {
+  background-color: var(--toolbar-bg);
+  border: 1px solid var(--toolbar-text);
+  color: var(--toolbar-text);
+  padding: 0.5em;
+  margin: 0 1em;
+  width: 30vw;
+  transition: all 0.2s;
+  border-radius: 5px;
+}
+
+.control-button:hover {
+  background-color: var(--button-highlight);
+  border-color: var(--button-pressed);
+  color: var(--button-pressed);
+}
+
+.control-button:active {
+  background-color: var(--button-pressed);
+  border-color: var(--button-highlight);
+  color: var(--button-highlight);
+}
