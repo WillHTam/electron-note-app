@@ -1,6 +1,6 @@
 {
   "name": "wombatnote",
-  "version": "1.0.0",
+  "version": "4.2.0",
   "description": "Note Program made with Electron",
   "main": "./app/main.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "count-lines": "^0.1.2",
     "electron": "^1.6.6",
-    "reading-time": "^1.1.0"
+    "reading-time": "^1.1.0",
+    "sentiment": "^4.0.0"
   }
 }

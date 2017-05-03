@@ -6,6 +6,7 @@ const fs = require('fs')
 // clipboard for clipboard
 const { remote, shell, clipboard } = require('electron')
 const getTextStatistics = require('./lib/get-statistics')
+const getFeeling = require('./lib/get-feeling')
 
 // refers to the current window
 const currentWindow = remote.getCurrentWindow()
@@ -21,15 +22,21 @@ const content = document.getElementById('content')
 const lineCount = document.getElementById('line-count')
 const wordCount = document.getElementById('word-count')
 const readingTime = document.getElementById('reading-time')
+const feeling = document.getElementById('feeling')
 const openFile = document.getElementById('open-file')
 const saveFile = document.getElementById('save-file')
 const copyToClipboard = document.getElementById('copy-to-clipboard')
 
-const updateUserInterface = (content) => {
+const updateUserInterface = (content, content2) => {
   const { lines, words, text } = getTextStatistics(content)
+  const { feel } = getFeeling(content2)
+
+  console.log('feel: ' + feel)
+
   wordCount.textContent = words
   lineCount.textContent = lines
   readingTime.textContent = text
+  feeling.textContent = feel
 
   // check to see if the content has been edited
   // reflects in OS to show if it's edited or not
@@ -37,6 +44,7 @@ const updateUserInterface = (content) => {
 }
 
 content.addEventListener('keydown', () => {
+  console.log('content-value: ' + content.value)
   updateUserInterface(content.value)
 })
 
@@ -51,12 +59,21 @@ openFile.addEventListener('click', () => {
   // title: Windows gives the dialog box title text
   // properties: Open, Save, etc but we just want open
   // filter: prevent opening a PDF for instance
+
+  // const files = remote.dialog.showOpenDialog(currentWindow, {
+  //   title: 'Open File',
+  //   properties: ['openFile'],
+  //   filters: [
+  //     {name: 'Text Files', extensions: ['txt', 'text']},
+  //     {name: 'Markdown', extensions: ['md', 'markdown']}
+  //   ]
+  // })
+
   const files = remote.dialog.showOpenDialog(currentWindow, {
     title: 'Open File',
     properties: ['openFile'],
     filters: [
-      {name: 'Text Files', extensions: ['txt', 'text']},
-      {name: 'Markdown', extensions: ['md', 'markdown']}
+      {name: 'Text Files', extensions: ['txt', 'text']}
     ]
   })
 
@@ -85,8 +102,7 @@ saveFile.addEventListener('click', () => {
     title: 'Save File',
     defaultPath: remote.app.getPath('documents'),
     filters: [
-      { name: 'Text Files', extensions: ['txt', 'text'] },
-      { name: 'Markdown', extensions: ['markdown', 'md'] }
+      { name: 'Text Files', extensions: ['txt', 'text'] }
     ]
   })
 
