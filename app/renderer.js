@@ -2,7 +2,7 @@
 const fs = require('fs')
 
 // Now connect renderer process to main process, which is the only process that can interact with the OS and thus open dialog boxes and such.
-// shell lets the file be opened in the file browser and lets the OS resolve some other shit for you
+// shell lets the file be opened in the file browser and lets the OS resolve some other shit for you as necessary
 // clipboard for clipboard
 const { remote, shell, clipboard } = require('electron')
 const getTextStatistics = require('./lib/get-statistics')
@@ -12,7 +12,7 @@ const currentWindow = remote.getCurrentWindow()
 
 // know the current file and get the current state to know if there are unsaved changes
 let currentFile = null
-// above: when first opening, there is no content
+// above: when first opening, there is no content no designated file
 let originalContent = ''
 // above: when the user deletes everything from the input area, it is an empty string. If the initial were null then deleting everything would not be represent that the file has nothing to save.
 
@@ -33,7 +33,23 @@ const updateUserInterface = (content) => {
   wordCount.textContent = words
   lineCount.textContent = lines
   readingTime.textContent = text
-  feeling.textContent = score
+  // feeling.textContent = score
+
+  if (score > 20) {
+    feeling.textContent = 'Very Positive'
+  } else if (score > 7) {
+    feeling.textContent = 'Positive'
+  } else if (score > 0) {
+    feeling.textContent = 'Mildly Positive'
+  } else if (score < -20) {
+    feeling.textContent = 'Very Negative'
+  } else if (score < -7) {
+    feeling.textContent = 'Negative'
+  } else if (score < 0) {
+    feeling.textContent = 'Mildly Negative'
+  } else {
+    feeling.textContent = 'Neutral'
+  }
 
   // check to see if the content has been edited
   // reflects in OS to show if it's edited or not
@@ -44,7 +60,7 @@ content.addEventListener('keydown', () => {
   updateUserInterface(content.value)
 })
 
-// COMMENT: this is also good
+// COMMENT: this is also useable
 // content.addEventListener('keyup', () => {
 //   updateUserInterface(content.value)
 // })
@@ -56,14 +72,9 @@ openFile.addEventListener('click', () => {
   // properties: Open, Save, etc but we just want open
   // filter: prevent opening a PDF for instance
 
-  // const files = remote.dialog.showOpenDialog(currentWindow, {
-  //   title: 'Open File',
-  //   properties: ['openFile'],
   //   filters: [
   //     {name: 'Text Files', extensions: ['txt', 'text']},
   //     {name: 'Markdown', extensions: ['md', 'markdown']}
-  //   ]
-  // })
 
   const files = remote.dialog.showOpenDialog(currentWindow, {
     title: 'Open File',

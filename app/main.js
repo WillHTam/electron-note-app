@@ -14,7 +14,7 @@ let mainWindow
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     minWidth: 500,
-    minHeight: 300
+    minHeight: 350
   })
 
   // mainWindow.webContents.loadURL(`file://${__dirname}/index.html`)
