@@ -16,7 +16,7 @@ let currentFile = null
 let originalContent = ''
 // above: when the user deletes everything from the input area, it is an empty string. If the initial were null then deleting everything would not be represent that the file has nothing to save.
 
-// Caching a bunch of DOM selectors here
+// Cache a bunch of DOM selectors here
 const content = document.getElementById('content')
 const lineCount = document.getElementById('line-count')
 const wordCount = document.getElementById('word-count')
@@ -29,8 +29,6 @@ const copyToClipboard = document.getElementById('copy-to-clipboard')
 const updateUserInterface = (content) => {
   const { lines, words, text, score } = getTextStatistics(content)
 
-  console.log('gr:' + getTextStatistics(content).score)
-
   wordCount.textContent = words
   lineCount.textContent = lines
   readingTime.textContent = text
@@ -42,7 +40,6 @@ const updateUserInterface = (content) => {
 }
 
 content.addEventListener('keydown', () => {
-  console.log('content-value: ' + content.value)
   updateUserInterface(content.value)
 })
 
