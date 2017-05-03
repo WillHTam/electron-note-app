@@ -6,7 +6,6 @@ const fs = require('fs')
 // clipboard for clipboard
 const { remote, shell, clipboard } = require('electron')
 const getTextStatistics = require('./lib/get-statistics')
-const getFeeling = require('./lib/get-feeling')
 
 // refers to the current window
 const currentWindow = remote.getCurrentWindow()
@@ -27,16 +26,15 @@ const openFile = document.getElementById('open-file')
 const saveFile = document.getElementById('save-file')
 const copyToClipboard = document.getElementById('copy-to-clipboard')
 
-const updateUserInterface = (content, content2) => {
-  const { lines, words, text } = getTextStatistics(content)
-  const { feel } = getFeeling(content2)
+const updateUserInterface = (content) => {
+  const { lines, words, text, score } = getTextStatistics(content)
 
-  console.log('feel: ' + feel)
+  console.log('gr:' + getTextStatistics(content).score)
 
   wordCount.textContent = words
   lineCount.textContent = lines
   readingTime.textContent = text
-  feeling.textContent = feel
+  feeling.textContent = score
 
   // check to see if the content has been edited
   // reflects in OS to show if it's edited or not
