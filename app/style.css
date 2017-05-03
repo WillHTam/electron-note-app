@@ -1,7 +1,7 @@
 :root {
-  --toolbar-bg: #1d2740;
-  --entry-background: #292e36;
-  --toolbar-text: #4469b0;
+  --toolbar-bg: #253252;
+  --entry-background: #2f353e;
+  --toolbar-text: #3a63b1;
   --button-highlight: #D6EAFF;
   --button-pressed: #7292B2;
 }
@@ -34,7 +34,7 @@ body {
 #content {
   flex: 1 1 auto;
   padding: 1em;
-  color: #9299b3;
+  color: #b0b3bf;
   background-color: var(--entry-background);
   resize: none;
   height: calc(100vh - 5em);

@@ -25,6 +25,7 @@ const feeling = document.getElementById('feeling')
 const openFile = document.getElementById('open-file')
 const saveFile = document.getElementById('save-file')
 const copyToClipboard = document.getElementById('copy-to-clipboard')
+const writeToClipboard = document.getElementById('write-to-clipboard')
 
 const updateUserInterface = (content) => {
   const { lines, words, text, score } = getTextStatistics(content)
@@ -114,6 +115,13 @@ saveFile.addEventListener('click', () => {
 
 copyToClipboard.addEventListener('click', () => {
   clipboard.writeText(content.value)
+})
+
+writeToClipboard.addEventListener('click', () => {
+  const file = currentFile
+  const text = clipboard.readText()
+
+  updateCurrentFile(file, text)
 })
 
 const updateCurrentFile = (file, text) => {
