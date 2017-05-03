@@ -16,11 +16,15 @@ let currentFile = null
 let originalContent = ''
 // above: when the user deletes everything from the input area, it is an empty string. If the initial were null then deleting everything would not be represent that the file has nothing to save.
 
+// Declare this for the global scope
+let keywords = ''
+
 // Cache a bunch of DOM selectors here
 const content = document.getElementById('content')
 const lineCount = document.getElementById('line-count')
 const wordCount = document.getElementById('word-count')
 const readingTime = document.getElementById('reading-time')
+const feelingTitle = document.getElementById('feeling-title')
 const feeling = document.getElementById('feeling')
 const openFile = document.getElementById('open-file')
 const saveFile = document.getElementById('save-file')
@@ -28,12 +32,12 @@ const copyToClipboard = document.getElementById('copy-to-clipboard')
 const writeToClipboard = document.getElementById('write-to-clipboard')
 
 const updateUserInterface = (content) => {
-  const { lines, words, text, score } = getTextStatistics(content)
+  const { lines, words, text, score, tokens } = getTextStatistics(content)
 
+  keywords = tokens
   wordCount.textContent = words
   lineCount.textContent = lines
   readingTime.textContent = text
-  // feeling.textContent = score
 
   if (score > 20) {
     feeling.textContent = 'Very Positive'
@@ -133,6 +137,13 @@ writeToClipboard.addEventListener('click', () => {
   const text = clipboard.readText()
 
   updateCurrentFile(file, text)
+})
+
+feeling.addEventListener('click', () => {
+  alert('Key Words used for this analysis: ' + keywords)
+})
+feelingTitle.addEventListener('click', () => {
+  alert('Key Words used for this analysis: ' + keywords)
 })
 
 const updateCurrentFile = (file, text) => {
