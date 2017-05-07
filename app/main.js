@@ -17,6 +17,8 @@ app.on('ready', () => {
     minHeight: 350
   })
 
+  require('./menu/mainmenu')
+
   // mainWindow.webContents.loadURL(`file://${__dirname}/index.html`)
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 })
