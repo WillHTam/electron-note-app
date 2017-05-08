@@ -43,6 +43,15 @@ const template = [
       { type: 'separator' },
       { role: 'togglefullscreen' }
     ]
+  },
+  {
+    label: 'Help',
+    submenu: [
+      {
+        label: 'Learn More',
+        click () { require('electron').shell.openExternal('http://pornhub.com') }
+      }
+    ]
   }
 ]
 
@@ -98,7 +107,6 @@ if (process.platform === 'darwin') {
       ]
     }
   )
-
 }
 
 const menu = Menu.buildFromTemplate(template)
