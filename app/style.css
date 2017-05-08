@@ -1,7 +1,12 @@
 :root {
-  --toolbar-bg: #253252;
+  /*--toolbar-bg: #253252;
   --entry-background: #2f353e;
   --toolbar-text: #3a63b1;
+  --button-highlight: #D6EAFF;
+  --button-pressed: #7292B2;*/
+  --toolbar-bg: #535f7d;
+  --entry-background: #ebedf2;
+  --toolbar-text: #c0cade;
   --button-highlight: #D6EAFF;
   --button-pressed: #7292B2;
 }
@@ -34,7 +39,8 @@ body {
 #content {
   flex: 1 1 auto;
   padding: 1em;
-  color: #b0b3bf;
+  /*color: #b0b3bf;*/
+  color: #2f353e;
   background-color: var(--entry-background);
   resize: none;
   height: calc(100vh - 5em);
