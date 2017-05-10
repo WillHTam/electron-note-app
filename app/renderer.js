@@ -17,7 +17,7 @@ let originalContent = ''
 // above: when the user deletes everything from the input area, it is an empty string. If the initial were null then deleting everything would not be represent that the file has nothing to save.
 
 // Declare this for the global scope
-let keywords = ''
+let emoScore = ''
 
 // Cache a bunch of DOM selectors here
 const content = document.getElementById('content')
@@ -32,9 +32,9 @@ const copyToClipboard = document.getElementById('copy-to-clipboard')
 const writeToClipboard = document.getElementById('write-to-clipboard')
 
 const updateUserInterface = (content) => {
-  const { lines, words, text, score, tokens } = getTextStatistics(content)
+  const { lines, words, text, score } = getTextStatistics(content)
 
-  keywords = tokens
+  emoScore = score
   wordCount.textContent = words
   lineCount.textContent = lines
   readingTime.textContent = text
@@ -140,10 +140,10 @@ writeToClipboard.addEventListener('click', () => {
 })
 
 feeling.addEventListener('click', () => {
-  alert('Key Words used for this analysis: ' + keywords)
+  alert('Emotional Score: ' + emoScore)
 })
 feelingTitle.addEventListener('click', () => {
-  alert('Key Words used for this analysis: ' + keywords)
+  alert('Emotional Score: ' + emoScore)
 })
 
 const updateCurrentFile = (file, text) => {
